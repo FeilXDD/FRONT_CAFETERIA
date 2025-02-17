@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Categorías y Productos</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Gestión de Categorías y Productos</h1>
+
+    <!-- Formulario para Categorías -->
+    <div class="form-section">
+      <h2>Categorías</h2>
+      <form id="categoriaForm">
+        <input type="hidden" id="categoriaId" />
+        <label for="nombreCategoria">Nombre:</label>
+        <input type="text" id="nombreCategoria" placeholder="Nombre de la categoría" required />
+        <label for="descripcionCategoria">Descripción:</label>
+        <textarea id="descripcionCategoria" placeholder="Descripción de la categoría" required></textarea>
+        <button type="submit">Guardar Categoría</button>
+      </form>
+      <ul id="categoriasList"></ul>
+    </div>
+
+    <!-- Formulario para Productos -->
+    <div class="form-section">
+      <h2>Productos</h2>
+      <form id="productoForm">
+        <input type="hidden" id="productoId" />
+        <label for="nombreProducto">Nombre:</label>
+        <input type="text" id="nombreProducto" placeholder="Nombre del producto" required />
+        <label for="descripcionProducto">Descripción:</label>
+        <textarea id="descripcionProducto" placeholder="Descripción del producto" required></textarea>
+        <label for="categoriaProducto">Categoría:</label>
+        <select id="categoriaProducto" required></select>
+        <label for="precioProducto">Precio:</label>
+        <input type="number" id="precioProducto" placeholder="Precio del producto" required />
+        <button type="submit">Guardar Producto</button>
+      </form>
+      <ul id="productosList"></ul>
+    </div>
+  </div>
+  <script src="js/admin.js"></script>
+</body>
+</html>

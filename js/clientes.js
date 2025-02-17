@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const hacerPedidoBtn = document.getElementById('hacer-pedido-btn');
 
   // URL del backend
-  const BACKEND_URL = 'https://back-cafeteria-render.onrender.com';
+  const BACKEND_URL =  'http://localhost:3000'/*'https://back-cafeteria-render.onrender.com'*/;
 
   // Función para obtener las categorías del backend
   const fetchCategorias = async () => {
