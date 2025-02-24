@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Usuarios</title>
+  <link rel="stylesheet" href="css/gestionUsuarios.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Gestión de Usuarios</h1>
+
+    <!-- Formulario para crear un usuario -->
+    <h2>Crear Usuario</h2>
+    <form id="createUserForm">
+      <input type="text" id="name" placeholder="Nombre" required>
+      <input type="email" id="email" placeholder="Correo electrónico" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <select id="role" required>
+        <option value="cliente">Cliente</option>
+        <option value="empleado">Empleado</option>
+        <option value="admin">Administrador</option>
+      </select>
+      <input type="text" id="phone" placeholder="Teléfono">
+      <textarea id="address" placeholder="Dirección"></textarea>
+      <button type="submit">Crear Usuario</button>
+    </form>
+
+    <!-- Formulario para actualizar un usuario -->
+    <h2>Actualizar Usuario</h2>
+    <form id="updateUserForm">
+      <input type="number" id="updateUserId" placeholder="ID del usuario" required>
+      <input type="text" id="updateName" placeholder="Nuevo nombre">
+      <input type="email" id="updateEmail" placeholder="Nuevo correo electrónico">
+      <input type="password" id="updatePassword" placeholder="Nueva contraseña">
+      <select id="updateRole">
+        <option value="cliente">Cliente</option>
+        <option value="empleado">Empleado</option>
+        <option value="admin">Administrador</option>
+      </select>
+      <input type="text" id="updatePhone" placeholder="Nuevo teléfono">
+      <textarea id="updateAddress" placeholder="Nueva dirección"></textarea>
+      <button type="submit">Actualizar Usuario</button>
+    </form>
+
+    <!-- Formulario para eliminar un usuario -->
+    <h2>Eliminar Usuario</h2>
+    <form id="deleteUserForm">
+      <input type="number" id="deleteUserId" placeholder="ID del usuario" required>
+      <button type="submit">Eliminar Usuario</button>
+    </form>
+
+    <!-- Lista de usuarios -->
+    <h2>Lista de Usuarios</h2>
+    <ul id="userList"></ul>
+  </div>
+
+  <script src="js/gestionUsuarios.js"></script>
+</body>
+
+</html>

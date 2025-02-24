@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Categorías y Productos</title>
+    <link rel="stylesheet" href="css/gestioncategoriasProductos.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Gestión de Categorías y Productos</h1>
+
+        <!-- Formulario para crear una categoría -->
+        <h2>Crear Categoría</h2>
+        <form id="createCategoryForm">
+            <input type="text" id="categoryName" placeholder="Nombre de la categoría" required>
+            <textarea id="categoryDescription" placeholder="Descripción"></textarea>
+            <input type="url" id="categoryImage" placeholder="URL de la imagen">
+            <button type="submit">Crear Categoría</button>
+        </form>
+
+        <!-- Lista de categorías -->
+        <h2>Categorías</h2>
+        <ul id="categoryList"></ul>
+
+        <!-- Formulario para crear un producto -->
+        <h2>Crear Producto</h2>
+        <form id="createProductForm">
+            <input type="text" id="productName" placeholder="Nombre del producto" required>
+            <textarea id="productDescription" placeholder="Descripción"></textarea>
+            <input type="number" id="productPrice" placeholder="Precio" step="0.01" required>
+            <select id="productCategory" required>
+                <option value="">Selecciona una categoría</option>
+            </select>
+            <input type="url" id="productImage" placeholder="URL de la imagen">
+            <textarea id="productIngredients"
+                placeholder='Ingredientes (formato JSON, ej: ["ingrediente1", "ingrediente2"])'></textarea>
+            <button type="submit">Crear Producto</button>
+        </form>
+
+        <!-- Lista de productos -->
+        <h2>Productos</h2>
+        <ul id="productList"></ul>
+    </div>
+
+    <script src="js/gestioncategoriasProductos.js"></script>
+</body>
+
+</html>

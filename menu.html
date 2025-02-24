@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú</title>
+  <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Menú</h1>
+
+    <!-- Botón para abrir el carrito -->
+    <button id="openCartButton">Carrito 🛒</button>
+
+    <!-- Lista de categorías -->
+    <h2>Categorías</h2>
+    <ul id="categoryList"></ul>
+
+    <!-- Ventana emergente para productos -->
+    <div id="productModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Productos</h2>
+        <div id="productCards"></div>
+      </div>
+    </div>
+
+    <!-- Ventana emergente para el carrito -->
+    <div id="cartModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Carrito</h2>
+        <div id="cartItems"></div>
+        <p>Total: $<span id="cartTotal">0.00</span></p>
+        <button id="placeOrderButton">Ordenar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/menu.js"></script>
+</body>
+</html>
