@@ -1,4 +1,8 @@
+// Constante para la URL principal de la API
+const API_URL = 'http://localhost:3000/api';
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Elementos del DOM
     const categoryList = document.getElementById('categoryList');
     const productModal = document.getElementById('productModal');
     const cartModal = document.getElementById('cartModal');
@@ -7,28 +11,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartItems = document.getElementById('cartItems');
     const cartTotal = document.getElementById('cartTotal');
 
+    // Carrito de compras (array para almacenar productos)
     let cart = [];
 
-    // Cargar categorías
+    /**
+ * Cargar categorías desde la API
+ */
     async function loadCategories() {
         try {
-            const response = await fetch('http://localhost:3000/api/categorias');
+            // Realizar solicitud GET a la API para obtener las categorías
+            const response = await fetch(`${API_URL}/categorias`);
             const categories = await response.json();
 
+            // Validar si la respuesta es un array
             if (!Array.isArray(categories)) {
                 console.error('Respuesta inesperada del servidor:', categories);
                 alert('Error al cargar categorías');
                 return;
             }
 
+            // Limpiar la lista de categorías antes de agregar nuevas
             categoryList.innerHTML = '';
+
+            // Iterar sobre las categorías y crear elementos HTML
             categories.forEach((category) => {
                 const li = document.createElement('li');
                 li.innerHTML = `
-            <img src="${category.url_img}" alt="${category.nombre}" style="width: 50px; height: 50px;">
-            <strong>${category.nombre}</strong>: ${category.descripcion}
-            <button data-id="${category.id}">Ver productos</button>
-          `;
+                <img src="${category.url_img}" alt="${category.nombre}">
+                <div class="content">
+                    <strong>${category.nombre}</strong>
+                    <p>${category.descripcion}</p>
+                    <button data-id="${category.id}">Ver productos</button>
+                </div>
+            `;
                 categoryList.appendChild(li);
 
                 // Agregar evento al botón "Ver productos"
@@ -40,38 +55,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Mostrar productos en una ventana emergente
+    /**
+     * Mostrar productos de una categoría específica en una ventana modal
+     * @param {number} categoryId - ID de la categoría seleccionada
+     */
     async function showProducts(categoryId) {
         try {
-            const response = await fetch(`http://localhost:3000/api/menu?categoria_id=${categoryId}`);
+            // Realizar solicitud GET a la API para obtener los productos de la categoría
+            const response = await fetch(`${API_URL}/menu?categoria_id=${categoryId}`);
             const products = await response.json();
 
+            // Validar si la respuesta es un array
             if (!Array.isArray(products)) {
                 console.error('Respuesta inesperada del servidor:', products);
                 alert('Error al cargar productos');
                 return;
             }
 
+            // Limpiar el contenedor de productos antes de agregar nuevos
             const productCards = document.getElementById('productCards');
             productCards.innerHTML = '';
 
+            // Iterar sobre los productos y crear tarjetas HTML
             products.forEach((product) => {
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-            <img src="${product.image_url}" alt="${product.name}">
-            <div>
-              <h3>${product.name}</h3>
-              <p>Precio: $${product.price}</p>
-              <button data-id="${product.id}">Agregar al carrito</button>
-            </div>
-          `;
+                    <img src="${product.image_url}" alt="${product.name}">
+                    <div>
+                        <h3>${product.name}</h3>
+                        <p>Precio: $${product.price}</p>
+                        <button data-id="${product.id}">Agregar al carrito</button>
+                    </div>
+                `;
                 productCards.appendChild(card);
 
                 // Agregar evento al botón "Agregar al carrito"
                 card.querySelector('button').addEventListener('click', () => addToCart(product));
             });
 
+            // Mostrar la ventana modal de productos
             productModal.style.display = 'block';
         } catch (error) {
             console.error('Error al cargar productos:', error.message);
@@ -79,56 +102,81 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Agregar producto al carrito
+    /**
+     * Agregar un producto al carrito
+     * @param {object} product - Producto a agregar
+     */
     function addToCart(product) {
+        // Buscar si el producto ya está en el carrito
         const existingItem = cart.find((item) => item.id === product.id);
+
         if (existingItem) {
+            // Si existe, incrementar la cantidad
             existingItem.quantity += 1;
         } else {
+            // Si no existe, agregarlo al carrito con cantidad inicial 1
             cart.push({ ...product, quantity: 1 });
         }
+
+        // Actualizar la interfaz del carrito
         updateCart();
     }
 
-    // Actualizar el carrito
+    /**
+     * Actualizar la interfaz del carrito
+     */
     function updateCart() {
+        // Limpiar el contenedor de elementos del carrito
         cartItems.innerHTML = '';
         let total = 0;
 
+        // Iterar sobre los productos en el carrito y crear tarjetas HTML
         cart.forEach((item) => {
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-          <img src="${item.image_url}" alt="${item.name}">
-          <div>
-            <h3>${item.name}</h3>
-            <p>Precio: $${item.price} x ${item.quantity}</p>
-            <button data-id="${item.id}">Quitar</button>
-          </div>
-        `;
+                <img src="${item.image_url}" alt="${item.name}">
+                <div>
+                    <h3>${item.name}</h3>
+                    <p>Precio: $${item.price} x ${item.quantity}</p>
+                    <button data-id="${item.id}">Quitar</button>
+                </div>
+            `;
             cartItems.appendChild(card);
 
             // Agregar evento al botón "Quitar"
             card.querySelector('button').addEventListener('click', () => removeFromCart(item.id));
 
+            // Calcular el total acumulado
             total += item.price * item.quantity;
         });
 
+        // Actualizar el total en la interfaz
         cartTotal.textContent = total.toFixed(2);
     }
 
-    // Quitar producto del carrito
+    /**
+     * Quitar un producto del carrito
+     * @param {number} productId - ID del producto a quitar
+     */
     function removeFromCart(productId) {
+        // Filtrar el carrito para eliminar el producto con el ID especificado
         cart = cart.filter((item) => item.id !== productId);
+
+        // Actualizar la interfaz del carrito
         updateCart();
     }
 
-    // Abrir ventana emergente del carrito
+    /**
+     * Abrir la ventana modal del carrito
+     */
     openCartButton.addEventListener('click', () => {
         cartModal.style.display = 'block';
     });
 
-    // Cerrar ventanas emergentes
+    /**
+     * Cerrar ventanas modales
+     */
     document.querySelectorAll('.close').forEach((closeBtn) => {
         closeBtn.addEventListener('click', () => {
             productModal.style.display = 'none';
@@ -136,7 +184,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Ordenar productos del carrito
+    /**
+     * Realizar un pedido enviando los datos del carrito al backend
+     */
     placeOrderButton.addEventListener('click', async () => {
         if (cart.length === 0) {
             alert('El carrito está vacío');
@@ -154,8 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 customizations: {}, // Puedes agregar personalizaciones si es necesario
             }));
 
-            // Enviar el pedido al backend
-            const response = await fetch('http://localhost:3000/api/pedidos', {
+            // Enviar el pedido al backend mediante una solicitud POST
+            const response = await fetch(`${API_URL}/pedidos`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ user_id: userId, total, status, items }),
@@ -165,8 +215,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 alert('¡Pedido realizado!');
-                cart = [];
-                updateCart();
+                cart = []; // Vaciar el carrito
+                updateCart(); // Actualizar la interfaz
             } else {
                 alert(`Error al realizar el pedido: ${data.error}`);
             }
@@ -175,6 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Error al realizar el pedido');
         }
     });
-    // Cargar categorías al iniciar
+
+    // Cargar categorías al iniciar la aplicación
     loadCategories();
 });

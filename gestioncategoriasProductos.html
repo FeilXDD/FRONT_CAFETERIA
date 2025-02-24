@@ -9,9 +9,14 @@
 </head>
 
 <body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <button onclick="window.location.href='menu.html'">Menú</button>
+        <button onclick="window.location.href='pedido.html'">Pedidos</button>
+    </nav>
+
     <div class="container">
         <h1>Gestión de Categorías y Productos</h1>
-
         <!-- Formulario para crear una categoría -->
         <h2>Crear Categoría</h2>
         <form id="createCategoryForm">
@@ -20,11 +25,9 @@
             <input type="url" id="categoryImage" placeholder="URL de la imagen">
             <button type="submit">Crear Categoría</button>
         </form>
-
         <!-- Lista de categorías -->
         <h2>Categorías</h2>
         <ul id="categoryList"></ul>
-
         <!-- Formulario para crear un producto -->
         <h2>Crear Producto</h2>
         <form id="createProductForm">
@@ -39,12 +42,10 @@
                 placeholder='Ingredientes (formato JSON, ej: ["ingrediente1", "ingrediente2"])'></textarea>
             <button type="submit">Crear Producto</button>
         </form>
-
         <!-- Lista de productos -->
         <h2>Productos</h2>
         <ul id="productList"></ul>
     </div>
-
     <script src="js/gestioncategoriasProductos.js"></script>
 </body>
 

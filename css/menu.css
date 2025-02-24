@@ -1,90 +1,181 @@
+/* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1, h2 {
-    text-align: center;
-  }
-  
-  #openCartButton {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-    text-align: center;
-  }
-  
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .close:hover {
-    color: black;
-  }
-  
-  .card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-  }
-  
-  .card img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-right: 10px;
-  }
-  
-  .card button {
-    margin-left: auto;
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .card button:hover {
-    background-color: #0056b3;
-  }
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9e4b7; /* Fondo beige suave */
+  color: #3e2723; /* Texto marrón oscuro */
+}
+
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff8dc; /* Fondo blanco crema */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+h1,
+h2 {
+  text-align: center;
+  color: #795548; /* Marrón café */
+}
+
+/* Botón para abrir el carrito */
+#openCartButton {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #795548; /* Marrón café */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#openCartButton:hover {
+  background-color: #5d4037; /* Marrón más oscuro */
+}
+
+/* Modal (ventana emergente) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+}
+
+.modal-content {
+  background-color: #fff8dc; /* Fondo blanco crema */
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #795548; /* Borde marrón */
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #795548; /* Color marrón al pasar el ratón */
+}
+
+/* Tarjetas de productos */
+.card {
+  border: 1px solid #795548; /* Borde marrón */
+  padding: 10px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  background-color: #fff; /* Fondo blanco */
+  border-radius: 5px;
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.card button {
+  margin-left: auto;
+  padding: 5px 10px;
+  background-color: #795548; /* Marrón café */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+  background-color: #5d4037; /* Marrón más oscuro */
+}
+/* Estilos para la lista de categorías */
+.category-list {
+  list-style: none; /* Eliminar viñetas */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap; /* Permitir varias filas si hay muchas categorías */
+  gap: 20px; /* Espacio entre las tarjetas */
+  justify-content: center; /* Centrar las tarjetas */
+}
+
+/* Estilo de cada categoría (tarjeta) */
+.category-list li {
+  background-color: #fff; /* Fondo blanco */
+  border: 1px solid #795548; /* Borde marrón */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  width: 250px; /* Ancho fijo para cada tarjeta */
+  overflow: hidden; /* Evitar que el contenido se desborde */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación al pasar el ratón */
+}
+
+/* Efecto hover en las tarjetas de categoría */
+.category-list li:hover {
+  transform: translateY(-5px); /* Levantar ligeramente */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* Imagen de la categoría */
+.category-list img {
+  width: 100%; /* Imagen ocupa todo el ancho */
+  height: 150px; /* Altura fija */
+  object-fit: cover; /* Mantener proporción de la imagen */
+  border-bottom: 1px solid #795548; /* Separador entre la imagen y el contenido */
+}
+
+/* Contenido de la categoría */
+.category-list .content {
+  padding: 15px;
+  text-align: center;
+}
+
+/* Nombre de la categoría */
+.category-list strong {
+  display: block;
+  font-size: 18px;
+  color: #795548; /* Texto marrón */
+  margin-bottom: 5px;
+}
+
+/* Descripción de la categoría */
+.category-list p {
+  font-size: 14px;
+  color: #5d4037; /* Texto marrón más oscuro */
+  margin-bottom: 10px;
+}
+
+/* Botón "Ver productos" */
+.category-list button {
+  padding: 8px 15px;
+  background-color: #795548; /* Marrón café */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.category-list button:hover {
+  background-color: #5d4037; /* Marrón más oscuro */
+}

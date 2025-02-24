@@ -1,55 +1,103 @@
+/* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9e4b7; /* Fondo beige suave */
+  color: #3e2723; /* Texto marrón oscuro */
 }
 
+/* Barra de navegación */
+.navbar {
+  display: flex;
+  justify-content: space-around; /* Espacio entre los botones */
+  align-items: center;
+  background-color: #795548; /* Marrón café */
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #fff8dc; /* Fondo blanco crema */
+  color: #795548; /* Texto marrón */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar button:hover {
+  background-color: #5d4037; /* Marrón más oscuro */
+  color: white;
+}
+
+/* Contenedor principal */
 .container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff8dc; /* Fondo blanco crema */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  border-radius: 10px; /* Bordes redondeados */
 }
 
 h1,
 h2 {
-    text-align: center;
+  text-align: center;
+  color: #795548; /* Marrón café */
 }
 
+/* Formularios */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 input,
 select,
 textarea {
-    padding: 10px;
-    font-size: 16px;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #795548; /* Borde marrón */
+  border-radius: 5px;
+  background-color: #fff; /* Fondo blanco */
+  transition: border-color 0.3s ease; /* Animación al enfocar */
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #5d4037; /* Borde marrón más oscuro al enfocar */
+  outline: none;
 }
 
 button {
-    padding: 10px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #795548; /* Marrón café */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+  background-color: #5d4037; /* Marrón más oscuro */
 }
 
+/* Listas */
 ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }

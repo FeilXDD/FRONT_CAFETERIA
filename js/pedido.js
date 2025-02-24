@@ -1,13 +1,17 @@
+const API_URL = 'http://localhost:3000/api';
+
 document.addEventListener('DOMContentLoaded', () => {
     const pedidoList = document.getElementById('pedidoList');
 
     // Cargar pedidos al iniciar
     loadPedidos();
 
-    // Función para cargar pedidos
+    /**
+     * Función para cargar pedidos desde la API
+     */
     async function loadPedidos() {
         try {
-            const response = await fetch('http://localhost:3000/api/pedidos');
+            const response = await fetch(`${API_URL}/pedidos`);
             const pedidos = await response.json();
 
             if (!Array.isArray(pedidos)) {
@@ -17,23 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             pedidoList.innerHTML = '';
+
             pedidos.forEach((pedido) => {
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-            <div>
-              <p><strong>ID:</strong> ${pedido.id}</p>
-              <p><strong>Total:</strong> $${pedido.total}</p>
-              <p><strong>Estado:</strong> ${pedido.status}</p>
-              <p><strong>Fecha:</strong> ${new Date(pedido.date).toLocaleString()}</p>
-            </div>
-            <button data-id="${pedido.id}" ${pedido.status === 'Completado' ? 'disabled' : ''}>
-              ${pedido.status === 'Completado' ? 'Completado' : 'Marcar como Completado'}
-            </button>
-          `;
+                    <div class="content">
+                        <p><strong>ID:</strong> ${pedido.id}</p>
+                        <p><strong>Total:</strong> $${pedido.total}</p>
+                        <p><strong>Estado:</strong> ${pedido.status}</p>
+                        <p><strong>Fecha:</strong> ${new Date(pedido.date).toLocaleString()}</p>
+                    </div>
+                    <button data-id="${pedido.id}" ${pedido.status === 'Completado' ? 'disabled' : ''}>
+                        ${pedido.status === 'Completado' ? 'Completado' : 'Marcar como Completado'}
+                    </button>
+                `;
                 pedidoList.appendChild(card);
 
-                // Agregar evento al botón "Completado"
+                // Agregar evento al botón "Marcar como Completado"
                 const button = card.querySelector('button');
                 button.addEventListener('click', () => markAsCompleted(pedido.id));
             });
@@ -43,10 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Función para marcar un pedido como completado
+    /**
+     * Función para marcar un pedido como completado
+     * @param {number} pedidoId - ID del pedido
+     */
     async function markAsCompleted(pedidoId) {
         try {
-            const response = await fetch(`http://localhost:3000/api/pedidos/${pedidoId}`, {
+            const response = await fetch(`${API_URL}/pedidos/${pedidoId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: 'Completado' }),

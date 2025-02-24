@@ -1,0 +1,87 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9e4b7; /* Fondo beige suave */
+    color: #3e2723; /* Texto marrón oscuro */
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff8dc; /* Fondo blanco crema */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+h1,
+h2 {
+    text-align: center;
+    color: #795548; /* Marrón café */
+}
+
+/* Contenedor de la lista de pedidos */
+#pedidoList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacio entre las tarjetas */
+}
+
+/* Diseño de cada tarjeta de pedido */
+.card {
+    background-color: #fff; /* Fondo blanco */
+    border: 1px solid #795548; /* Borde marrón */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación al pasar el ratón */
+}
+
+/* Efecto hover en las tarjetas */
+.card:hover {
+    transform: translateY(-5px); /* Levantar ligeramente */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* Contenido del pedido */
+.card .content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre los elementos */
+}
+
+.card p {
+    margin: 0;
+    font-size: 14px;
+    color: #5d4037; /* Texto marrón más oscuro */
+}
+
+.card p strong {
+    color: #795548; /* Texto marrón café */
+}
+
+/* Botón "Marcar como Completado" */
+button {
+    padding: 8px 15px;
+    background-color: #795548; /* Marrón café */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5d4037; /* Marrón más oscuro */
+}
+
+/* Botón deshabilitado */
+button:disabled {
+    background-color: #ccc; /* Gris claro */
+    cursor: not-allowed;
+}
